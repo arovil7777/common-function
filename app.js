@@ -7,18 +7,19 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const cors = require('cors');
 
-const config = require(process.cwd() + './config/config.json')[server];
+const config = require(process.cwd() + '/config/config.json', 'utf8').server;
+
 const { httpPort, httpsPort } = config;
 
 // Swagger
 const { serve, setup } = require('swagger-ui-express');
-const swaggerOption = require('./swagger/swaggerSetting');
+const swaggerOption = require('./swagger/common-swagger');
 
 // DB 및 Router
 var models = require('./models');
-var accountRouter = require('./routes/accountRoute');
-var levelRouter = require('./routes/levelRoute');
-var authRouter = require('./routes/authorizationRoute');
+const accountsRouter = require('./routes/accounts-router');
+const authRouter = require('./routes/auth-router');
+const levelsRouter = require('./routes/levels-router');
 
 // const sequelize = models.sequelize;
 const app = express();
@@ -83,8 +84,8 @@ httpsServer.listen(httpsPort, function () {
 });
 
 // 사용자 계정 관리
-app.use('/api/accounts', accountRouter);
+app.use('/api/accounts', accountsRouter);
 // 사용자 등급 관리
-app.use('/api/levels', levelRouter);
+app.use('/api/levels', levelsRouter);
 // 사용자 인증 관리
 app.use('/api/users', authRouter);
