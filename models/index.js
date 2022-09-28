@@ -4,7 +4,8 @@ const { readdirSync } = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const config = require(__dirname + '/../config/config.json').database;
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
 let sequelize;
@@ -36,6 +37,6 @@ db.accounts = require('./accounts-model')(sequelize, Sequelize);
 db.levels = require('./levels-model')(sequelize, Sequelize);
 
 db.accounts.belongsTo(db.levels, { foreignKey: 'levelSeq', targetKey: 'seq' });
-db.levels.hasMany(db.accounts, { foreignKey: 'level_seq', sourceKey: 'seq' });
+db.levels.hasMany(db.accounts, { foreignKey: 'levelSeq', sourceKey: 'seq' });
 
 module.exports = db;

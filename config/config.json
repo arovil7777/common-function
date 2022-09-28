@@ -1,5 +1,5 @@
 {
-  "database": {
+  "development": {
     "username": "root",
     "password": "123456",
     "database": "common_function",

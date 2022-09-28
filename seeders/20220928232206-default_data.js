@@ -26,7 +26,7 @@ module.exports = {
             }
         ]);
 
-        const levelsRecords = await queryInterface.sequelize.query('SELECT seq FROM user_level');
+        const levelsRecords = await queryInterface.sequelize.query('SELECT seq FROM levels');
         const levels = levelsRecords[0];
 
         let totalEncrypt = await encrypt('totaladmin');
@@ -39,7 +39,7 @@ module.exports = {
                 password: totalEncrypt.encrypt_password, // KDN 프로젝트 : hyper2130
                 name: 'Total Administrator',
                 email: 'hyper-admin@mail.system',
-                level: levels[3].seq,
+                level_seq: levels[3].seq,
                 salt: totalEncrypt.salt
             },
             {
@@ -48,7 +48,7 @@ module.exports = {
                 password: adminEncrypt.encrypt_password, // KDN 프로젝트 : hyper2130
                 name: 'Administrator',
                 email: 'admin@mail.system',
-                level: levels[2].seq,
+                level_seq: levels[2].seq,
                 salt: adminEncrypt.salt
             }
         ]);
