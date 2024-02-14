@@ -6,7 +6,6 @@
 * Ubuntu        20.04.4 LTS
 * Node.js       v16.16.0
 * NPM           8.11.0
-* Typescript    Version 4.8.3
 * VS Code       v1.71.2
 * MariaDB       10.3.34
 

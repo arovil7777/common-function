@@ -66,20 +66,19 @@ app.use('/swagger', serve, setup(swaggerOption, { explorer: true }));
 // });
 // app.use('/', express.static('./public'));
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Locale');
     res.header('Access-Control-Expose-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Locale');
     (req.method == 'OPTIONS') ? res.sendStatus(200) : next();
-    // res.header('Access-Control-Allow-Headers', 'Content-Type');
 });
 
-httpServer.listen(httpPort, function () {
+httpServer.listen(httpPort, () => {
     console.log(`Server is running at : http://localhost:${httpPort}`);
 });
 
-httpsServer.listen(httpsPort, function () {
+httpsServer.listen(httpsPort, () => {
     console.log(`HTTPS server listening on port ${httpsPort}`);
 });
 
