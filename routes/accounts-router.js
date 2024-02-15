@@ -44,16 +44,15 @@ router.get('/:ids/confirm', async function (req, res) {
 // 계정 email 검증 (GET)
 router.get('/:emails/confirm', async function (req, res) {
     const user_email = req.params.emails;
-    -
-        accounts.findOne({ where: { email: user_email } })
-            .then(result => {
-                if (result.email == user_email) {
-                    res.json(false);
-                }
-            })
-            .catch(err => {
-                res.json(true);
-            });
+    accounts.findOne({ where: { email: user_email } })
+        .then(result => {
+            if (result.email == user_email) {
+                res.json(false);
+            }
+        })
+        .catch(err => {
+            res.json(true);
+        });
 });
 
 // 계정 다중 수정 (PATCH)
